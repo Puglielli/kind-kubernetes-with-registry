@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ${CM_NAME}
+  namespace: kube-public
+data:
+  localRegistryHosting.v1: |
+    host: "${REGISTRY_EXPORT_PORT}:${REGISTRY_PORT}"
+    help: "https://kind.sigs.k8s.io/docs/user/local-registry/"
