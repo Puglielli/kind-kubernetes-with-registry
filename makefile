@@ -17,7 +17,7 @@ create_registry:
 	$(eval exists=$(shell docker inspect -f '{{ .State.Running }}' ${REGISTRY_NAME} 2>/dev/null))
 
 	@if [ -z ${exists} ]; then \
-		docker run -d --restart=always -p "${HOST}:${REGISTRY_EXPORT_PORT}:${REGISTRY_PORT}" --name "${REGISTRY_NAME}" ${REGISTRY_IMAGE} ;\
+		docker run -d --restart=always -p ${HOST}:${REGISTRY_EXPORT_PORT}:${REGISTRY_PORT} --name ${REGISTRY_NAME} ${REGISTRY_IMAGE} ;\
 	else \
 		echo "Registry already exist" ;\
 	fi
@@ -70,6 +70,7 @@ clean_up:
 		docker stop ${REGISTRY_NAME} ;\
 		docker rm ${REGISTRY_NAME} ;\
 		docker volume rm ${volume_name} ;\
+		docker image rm ${REGISTRY_IMAGE} ;\
 	else \
 		echo "Registry already deleted" ;\
 	fi

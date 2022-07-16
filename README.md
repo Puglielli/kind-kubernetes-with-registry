@@ -29,7 +29,7 @@ Run your images in local kubernetes.
         
         - Creating the Registry container
         ```
-            docker run -d --restart=always -p "127.0.0.1:5001:5000" --name k8s-registry registry:2
+            docker run -d --restart=always -p 127.0.0.1:5001:5000 --name k8s-registry registry:2
         ```
 
         - Creating Kubernetes
@@ -64,6 +64,7 @@ Run your images in local kubernetes.
             docker stop k8s-registry
             docker rm k8s-registry
 		    docker volume rm $volume_name
+            docker image rm registry:2
         ```
         
         - Deleting Kubernetes
